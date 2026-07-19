@@ -1,0 +1,7 @@
+.DS_Store
+Cave/Cave/*.xcassets
+Cave/Cave/*.lproj
+Cave/*.xcodeproj
+Terrain/Terrain/*.xcassets
+Terrain/Terrain/*.lproj
+Terrain/*.xcodeproj
