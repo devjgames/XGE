@@ -119,7 +119,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MTKViewDelegate {
                 node.position = scene.eye
             }
             
-            if(gameView!.isKeyDown(key: 53)) { // ESC
+            if gameView!.isKeyDown(key: 53) { // ESC
                 gameView!.continuousMouseEnabled = false
                 NSApplication.shared.terminate(self)
             }

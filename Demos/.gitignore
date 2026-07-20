@@ -5,3 +5,6 @@ Cave/*.xcodeproj
 Terrain/Terrain/*.xcassets
 Terrain/Terrain/*.lproj
 Terrain/*.xcodeproj
+Dungeon/Dungeon/*.xcassets
+Dungeon/Dungeon/*.lproj
+Dungeon/*.xcodeproj

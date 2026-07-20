@@ -22,6 +22,9 @@ public struct Particle {
     public var color = Vec4()
     public var lifeSpan:Float = 0
     public var time:Float = 0
+    
+    public init() {
+    }
 }
 
 @MainActor

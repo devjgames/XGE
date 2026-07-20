@@ -14,7 +14,6 @@ import JavaScriptCore
 @MainActor
 public class Scene {
     
-    public var loadSceneName:String?
     public var backgroundColor = Vec4(0.25, 0.25, 0.25, 1)
     public var eye = Vec3(200, 200, 200)
     public var target = Vec3(0, 0, 0)
@@ -406,7 +405,7 @@ fileprivate func parseNode(_ element:XMLElement) throws -> Node {
     node.specularColor = try parseVec4(value:attribute(element, named: "specularColor"))
     node.lightColor = try parseVec4(value:attribute(element, named: "lightColor"))
     
-    node.lightRadius = (attribute(element, named: "ambientColor") as NSString).floatValue
+    node.lightRadius = (attribute(element, named: "lightRadius") as NSString).floatValue
     node.specularPower = (attribute(element, named: "specularPower") as NSString).floatValue
     node.zOrder = (attribute(element, named: "zOrder") as NSString).integerValue
     
