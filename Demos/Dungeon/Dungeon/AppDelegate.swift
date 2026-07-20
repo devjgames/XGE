@@ -137,7 +137,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, MTKViewDelegate {
                         let d = simd_normalize(scene.target - scene.eye)
                         var time = Float.greatestFiniteMagnitude
                         
-                        if collider.isect(root: scene.root, origin: scene.eye, direction: d, buffer: 0.1, collidablesOnly: true, time: &time) != nil {
+                        if collider.isect(
+                            root: scene.root,
+                            origin: scene.eye,
+                            direction: d,
+                            buffer: 0.1,
+                            collidablesOnly: true,
+                            time: &time) != nil {
+                            
                             do {
                                 if let sound = try gameView!.assets.load(path: "fire.wav") as? AVAudioPlayer {
                                     sound.volume = 0.1
@@ -176,7 +183,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, MTKViewDelegate {
                         let u = node.data["u"] as! Vec3
                         let f = node.data["f"] as! Vec3
                         
-                        p.velocity = (-20 + Float(drand48()) * 40) * r + (10 + Float(drand48()) * 20) * u + (-20 + Float(drand48() * 40)) * f
+                        p.velocity =
+                        (-20 + Float(drand48()) * 40) * r +
+                        (+10 + Float(drand48()) * 20) * u +
+                        (-20 + Float(drand48()) * 40) * f
+                        
                         p.startPosition = l + u * 7
                         p.startColor = Vec4(1, 1, 1, a)
                         p.endColor = Vec4(1, 1, 1, 0)
