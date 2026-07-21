@@ -14,7 +14,6 @@ open class GameView : MTKView {
     
     public static let keyCount:Int = 500
     public static let buttonCount:Int = 2
-    public static var inDesign = true
     
     private static var _instance : GameView?
     private var trackingArea: NSTrackingArea?
@@ -377,12 +376,13 @@ open class GameView : MTKView {
         _fps = 0
     }
     
-    public func newScene() {
+    public func newScene(api:Api) {
         Log.instance.put("creating scene ...")
-        scene.root.detachAll()
-    
+
         _scene = Scene()
         _assets!.clear()
+        
+        api.setRoot()
     }
     
     public func tick() {

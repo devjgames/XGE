@@ -32,8 +32,6 @@ public class Scene {
     private var _lights : [Node] = []
     private var _encodables : [Node] = []
     private var _sprite:Sprite?
-    private var _lines = Node()
-    private var _lineEncoder:LineEncoder?
     private var _trianglesRendered:Int = 0
     private var _cullStateBinds = 0
     private var _depthStateBinds = 0
@@ -50,7 +48,6 @@ public class Scene {
                 Log.instance.put(error)
             }
         }
-        _lineEncoder = LineEncoder()
     }
     
     public var trianglesRendered: Int {
@@ -121,35 +118,6 @@ public class Scene {
                 _encodables.removeAll(keepingCapacity: true)
                 
                 traverse(node: root)
-                
-                if GameView.inDesign {
-                    if let lineEncoder = _lineEncoder {
-                        for i in (0..<root.childCount) {
-                            let node = root[i]
-                            
-                            if node.isLocation {
-                                let s:Float = 16
-                                let p = node.absolutePosition
-                                let r = simd_normalize(node.r)
-                                let u = simd_normalize(node.u)
-                                let f = simd_normalize(node.f)
-                                
-                                lineEncoder.pushLine(p1: p, p2: p + r * s, c1: Vec4(1, 0, 0, 1), c2: Vec4(1, 0, 0, 1))
-                                lineEncoder.pushLine(p1: p, p2: p + u * s, c1: Vec4(0, 1, 0, 1), c2: Vec4(0, 1, 0, 1))
-                                lineEncoder.pushLine(p1: p, p2: p + f * s, c1: Vec4(0, 0, 1, 1), c2: Vec4(0, 0, 1, 1))
-                            }
-                        }
-                        let s:Float = 32
-                        let p = target
-                        
-                        lineEncoder.pushLine(p1: p, p2: p + Vec3(s, 0, 0), c1: Vec4(1, 0, 0, 1), c2: Vec4(1, 0, 0, 1))
-                        lineEncoder.pushLine(p1: p, p2: p + Vec3(0, s, 0), c1: Vec4(0, 1, 0, 1), c2: Vec4(0, 1, 0, 1))
-                        lineEncoder.pushLine(p1: p, p2: p + Vec3(0, 0, s), c1: Vec4(0, 0, 1, 1), c2: Vec4(0, 0, 1, 1))
-                        lineEncoder.buffer()
-                        
-                        _encodables.append(_lines)
-                    }
-                }
                 
                 _encodables.sort {
                     a, b in
@@ -243,10 +211,6 @@ public class Scene {
                             _trianglesRendered += encodable.encode(encoder: encoder, node: node, lights: &lights)
                             _rendered += 1
                         }
-                    } else if node === _lines {
-                        if let lineEncoder = _lineEncoder {
-                            lineEncoder.encode(encoder: encoder)
-                        }
                     }
                 }
                 if let sprite = _sprite {
@@ -286,8 +250,6 @@ public class Scene {
 public func loadSCX(name:String) {
     
     Log.instance.put("loading '\(name)' ...")
-    
-    GameView.instance!.newScene()
     
     let url = AssetManager.rootURL!.appending(path: name)
     let scene = GameView.instance!.scene
