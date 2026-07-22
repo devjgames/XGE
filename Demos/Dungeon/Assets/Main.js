@@ -3,8 +3,10 @@
 
 if(init()) {
 	var start = true;
-	var sceneName = "scene1.scx"
-	var down = false
+	var sceneName = "scene1.scx";
+	var down = false;
+	var s1 = 0.0;
+	var s2 = -1.0;
 	
 	srand(100);
 	
@@ -85,6 +87,80 @@ if(init()) {
 				
 				getPosition();
 				setPosition(getX(), get("y") - a * 300, getZ());
+			} else if(name() == "spell") {
+				var ss = 10 + rand() * 30;
+				var sc = 0.25 + rand() * 0.5
+				var vx = -10 * rand() * 20;
+				var vy = -10 * rand() * 20;
+				var vz = -10 * rand() * 20;
+				
+				getPosition();
+				setEmitPosition(getX(), getY() + Math.sin(totalTime() * 2) * 25, getZ());
+				emitParticle(
+					vx, vy, vz,
+					0, 0, 0,
+					ss, ss,
+					0.1, 0.1,
+					sc, sc, sc, 1,
+					0, 0, 0, 1,
+					0.5 + rand() * 1.5
+				);
+			} else if(name() == "smoke") {
+				if(isKeyDown(3) && s1 > 0.75) { // F
+					toRoot();
+					setTime(999999);
+					if(isect(ex, ey, ez, fx, fy, fz, 0.1, true)) {
+						setVolume("fire.wav", 0.1);
+						play("fire.wav", false);
+						
+						var hrx = get("_rx");
+						var hry = get("_ry");
+						var hrz = get("_rz");
+						var hux = get("_ux");
+						var huy = get("_uy");
+						var huz = get("_uz");
+						var hfx = get("_fx");
+						var hfy = get("_fy");
+						var hfz = get("_fz");
+						var hix = ex + time() * fx;
+						var hiy = ey + time() * fy;
+						var hiz = ez + time() * fz;
+						
+						s1 = 0.0;
+						s2 = 1.0;
+						toRoot();
+					}	
+					toChild(i);		
+				}
+				s1 += elapsedTime();
+				
+				if(s2 > 0) {
+					var sa = 0.25 + rand() * 0.5;
+					var ss = 10 + rand() * 30;
+					var vx = 
+						(-20 + rand() * 40) * hrx +
+						(+10 + rand() * 40) * hux +
+						(-20 + rand() * 40) * hfx;
+					var vy = 
+						(-20 + rand() * 40) * hry +
+						(+10 + rand() * 40) * huy +
+						(-20 + rand() * 40) * hfy;
+					var vz = 
+						(-20 + rand() * 40) * hrz +
+						(+10 + rand() * 40) * huz +
+						(-20 + rand() * 40) * hfz;
+						
+					emitParticle(
+						vx, vy, vz,
+						hix + hux * 10, hiy + huy * 10, hiz + huz * 10,
+						ss, ss, 
+						0.1, 0.1,
+						0.5, 0.5, 0.5, sa,
+						0.5, 0.5, 0.5, 0,
+						0.5 + rand() * 1.5
+					);
+					s2 -= elapsedTime();
+				}
 			}
 			toParent();
 		}

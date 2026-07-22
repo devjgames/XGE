@@ -24,6 +24,18 @@ function load(sceneName) {
 		} else if(name() == "door.obj") {
 			getPosition();
 			put("y", getY());
+		} else if(name() == "spell") {
+			setParticles(500, "particle.png");
+			setZOrder(50);
+			setDepthWriteEnabled(false);
+			setBlendEnabled(true);
+			setAlphaBlend(false);
+		} else if(name() == "smoke") {
+			setParticles(500, "smoke.png");
+			setZOrder(100);
+			setDepthWriteEnabled(false);
+			setBlendEnabled(true);
+			setAlphaBlend(true);
 		}
 		toParent();
 	}
