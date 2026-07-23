@@ -88,14 +88,13 @@ if(init()) {
 				getPosition();
 				setPosition(getX(), get("y") - a * 300, getZ());
 			} else if(name() == "spell") {
-				var ss = 10 + rand() * 30;
+				var ss = 20 + rand() * 40;
 				var sc = 0.25 + rand() * 0.5
-				var vx = -10 * rand() * 20;
-				var vy = -10 * rand() * 20;
-				var vz = -10 * rand() * 20;
+				var vx = -10 + rand() * 20;
+				var vy = -10 + rand() * 20;
+				var vz = -10 + rand() * 20;
 				
-				getPosition();
-				setEmitPosition(getX(), getY() + Math.sin(totalTime() * 2) * 25, getZ());
+				setEmitPosition(0, Math.sin(totalTime() * 2) * 30, 0);
 				emitParticle(
 					vx, vy, vz,
 					0, 0, 0,
@@ -155,8 +154,8 @@ if(init()) {
 						hix + hux * 10, hiy + huy * 10, hiz + huz * 10,
 						ss, ss, 
 						0.1, 0.1,
-						0.5, 0.5, 0.5, sa,
-						0.5, 0.5, 0.5, 0,
+						1, 1, 1, sa,
+						1, 1, 1, 0,
 						0.5 + rand() * 1.5
 					);
 					s2 -= elapsedTime();
