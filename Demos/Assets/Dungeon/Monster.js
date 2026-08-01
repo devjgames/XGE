@@ -7,5 +7,6 @@ if(init()) {
 	setCollidable(true);
 	setDynamic(true);
 	setSequence(0, frameCount() - 1, 9, true);
+	put("energy", 6);
 }
 

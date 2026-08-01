@@ -129,6 +129,17 @@ if(init()) {
 				play("fire.wav", false);
 				s1 = 0;
 				s2 = 1;
+				var energy = get("energy");
+				if(energy != null) {
+					if(energy != 0) {
+						energy -= 1
+						if(energy == 0) {
+							setKFMeshTexture("Monster-gs.png");
+							setPaused(true);
+						}
+						put("energy", energy);
+					}
+				}
 			}
 		}
 		s1 += elapsedTime();
@@ -137,9 +148,9 @@ if(init()) {
 		if(s2 > 0.0) {
 			var sa = 0.2 + rand() * 0.5;
 			var ss = 10 + rand() * 20;
-			var ri = -10 + rand() * 20;
-			var ui = rand() * 10;
-			var fi = -10 + rand() * 20;
+			var ri = -20 + rand() * 40;
+			var ui = rand() * 40;
+			var fi = -20 + rand() * 40;
 			var vx = ri * irx + ui * iux + fi * ifx;
 			var vy = ri * iry + ui * iuy + fi * ify;
 			var vz = ri * irz + ui * iuz + fi * ifz;

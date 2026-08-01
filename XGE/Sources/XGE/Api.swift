@@ -1070,6 +1070,25 @@ public class Api {
             }
             context.setObject(isDone, forKeyedSubscript: "isDone" as NSString)
             
+            // isPaused()
+            // return true if the current node's key frame mesh is paused
+            let isPaused: @convention(block) () -> Bool = { [weak self] in
+                if let mesh = self!._current!.encodable as? KFMesh {
+                    return mesh.paused
+                }
+                return false
+            }
+            context.setObject(isPaused, forKeyedSubscript: "isPaused" as NSString)
+            
+            // setPaused(paused)
+            // set the paused state of the current node's key frame mesh
+            let setPaused: @convention(block) (Bool) -> Void = { [weak self] paused in
+                if let mesh = self!._current!.encodable as? KFMesh {
+                    mesh.paused = paused
+                }
+            }
+            context.setObject(setPaused, forKeyedSubscript: "setPaused" as NSString)
+            
             // setSequence(start, end, speed, looping)
             // set the animation sequence for the current node's key frame mesh
             let setSequence: @convention(block) (Int, Int, Int, Bool) -> Void = { [weak self] start, end, speed, looping in

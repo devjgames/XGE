@@ -35,6 +35,7 @@ public class KFMesh : Encodable {
     public var texture:MTLTexture?
     public var decal:MTLTexture?
     public var vertexBuffer:MTLBuffer?
+    public var paused = false
     
     private var start:Int = 0
     private var end:Int = 0
@@ -101,7 +102,7 @@ public class KFMesh : Encodable {
     }
     
     public func update(node: Node) {
-        if done {
+        if done || paused {
             return
         }
         
