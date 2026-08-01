@@ -1,0 +1,4 @@
+.DS_Store
+Demos/*.xcassets
+Demos/*.lproj
+Demos.xcodeproj

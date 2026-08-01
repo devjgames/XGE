@@ -1,0 +1,22 @@
+# name x y z rx ry rz ux uy uz fx fy fz
+Dungeon2 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Light300 0.0 64.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Player 0.0 64.0 0.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08
+# name x y z rx ry rz ux uy uz fx fy fz
+Door 0.0 0.0 -192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Light300 0.0 64.0 -320.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Light300 256.0 0.0 -448.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Light400 256.0 32.0 -832.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Monster 256.0 -96.0 -864.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Spell 255.0 12.0 -845.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+Portal -18.0 66.0 -383.0 1.0 0.0 0.0 0.0 -1.26880515e-08 0.99999994 0.0 -0.99999994 1.26880515e-08
+# name x y z rx ry rz ux uy uz fx fy fz
+Portal 256.0 -91.0 -843.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0

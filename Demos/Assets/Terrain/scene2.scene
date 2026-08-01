@@ -1,0 +1,10 @@
+# name x y z rx ry rz ux uy uz fx fy fz
+Terrain 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+ButterFly 108.0 0.0 301.0 0.70710677 0.0 -0.70710677 0.0 1.0 0.0 0.70710677 0.0 0.70710677
+# name x y z rx ry rz ux uy uz fx fy fz
+ButterFly -350.0 0.0 -359.0 -0.003613264 0.0 0.9999935 0.0 1.0 0.0 -0.99999344 0.0 -0.0036134445
+# name x y z rx ry rz ux uy uz fx fy fz
+Player 261.0 44.0 339.0 -0.70710677 0.0 -0.70710677 0.0 1.0 0.0 0.70710677 0.0 -0.70710677
+# name x y z rx ry rz ux uy uz fx fy fz
+Sky 0.0 117.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
