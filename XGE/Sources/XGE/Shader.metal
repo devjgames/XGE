@@ -11,6 +11,7 @@ using namespace metal;
 struct VertexInput {
     float3 position;
     float2 textureCoordinate;
+    float2 lightMapCoordinate;
     float3 normal;
     float4 color;
 };
@@ -19,6 +20,7 @@ struct FragmentInput {
     float4 position [[position]];
     float3 objPosition;
     float2 textureCoordinate;
+    float2 lightMapCoordinate;
     float3 normal;
     float4 color;
 };
@@ -43,6 +45,7 @@ struct FragmentData {
     float specularPower;
     int textureEnabled;
     int decalEnabled;
+    int lightMapEnabled;
     int lightingEnabled;
     int lightCount;
 };
@@ -70,6 +73,7 @@ vertex FragmentInput vertexShader(uint vertexID [[vertex_id]],
     output.position = data.projection * data.view * position;
     output.objPosition = position.xyz;
     output.textureCoordinate = input.textureCoordinate;
+    output.lightMapCoordinate = input.lightMapCoordinate;
     output.normal = normalize((data.modelIT * float4(input.normal, 0)).xyz);
     output.color = input.color;
                                            
@@ -79,9 +83,11 @@ vertex FragmentInput vertexShader(uint vertexID [[vertex_id]],
 fragment float4 fragmentShader(FragmentInput in [[stage_in]],
                                texture2d<half> texture [[texture(0)]],
                                texture2d<half> decal [[texture(1)]],
+                               texture2d<half> lightMap [[texture(2)]],
                                constant FragmentData &data[[buffer(0)]],
                                constant Light *lights[[buffer(1)]]) {
     constexpr sampler s1(min_filter::nearest, mag_filter::nearest, address::repeat);
+    constexpr sampler l1(min_filter::linear, mag_filter::linear, address::clamp_to_edge);
     float4 color = in.color;
     
     if(data.lightingEnabled != 0) {
@@ -105,6 +111,9 @@ fragment float4 fragmentShader(FragmentInput in [[stage_in]],
     
     if(data.textureEnabled != 0) {
         color *= float4(texture.sample(s1, in.textureCoordinate));
+    }
+    if(data.lightMapEnabled != 0) {
+        color.rgb *= float4(lightMap.sample(l1, in.lightMapCoordinate)).rgb;
     }
     if(data.decalEnabled != 0) {
         float4 d = float4(decal.sample(s1, in.textureCoordinate));

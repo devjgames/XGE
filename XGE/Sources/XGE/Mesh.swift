@@ -16,8 +16,10 @@ public class MeshPart {
     public var name:String = ""
     public var texture:MTLTexture?
     public var decal:MTLTexture?
+    public var lightMap:MTLTexture?
     public var vertices:[Vertex] = []
     public var indices:[Int32] = []
+    public var polygons:[[Int]] = []
     public var vertexBuffer:MTLBuffer?
     public var indexBuffer:MTLBuffer?
     public var bounds:AABB = AABB()
@@ -71,6 +73,7 @@ public class MeshPart {
             
             fragmentData.textureEnabled = (texture == nil) ? 0 : 1
             fragmentData.decalEnabled = (decal == nil) ? 0 : 1
+            fragmentData.lightMapEnabled = (lightMap == nil) ? 0 : 1
             fragmentData.ambientColor = node.ambientColor
             fragmentData.diffuseColor = node.diffuseColor
             fragmentData.lightCount = Int32(lights.count)
@@ -90,6 +93,9 @@ public class MeshPart {
             }
             if let decal = decal {
                 encoder.setFragmentTexture(decal, index: 1)
+            }
+            if let lightMap = lightMap {
+                encoder.setFragmentTexture(lightMap, index: 2)
             }
             encoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0)
             
@@ -129,10 +135,12 @@ public class MeshPart {
                                                                     length: MemoryLayout<Int32>.stride * indices.count,
                                                                     options: .storageModeManaged)
             } else {
+                Log.instance.put("invalid mesh part indices")
                 indices.removeAll()
                 vertices.removeAll()
             }
         } else {
+            Log.instance.put("empty mesh part")
             indices.removeAll()
             vertices.removeAll()
         }

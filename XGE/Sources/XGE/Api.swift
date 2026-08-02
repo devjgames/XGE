@@ -884,6 +884,32 @@ public class Api {
             }
             context.setObject(setMesh, forKeyedSubscript: "setMesh" as NSString)
             
+            // newMesh()
+            // set the current node's graphic to a new empty mesh
+            let newMesh: @convention(block) () -> Void = { [weak self] in
+                self!._current!.encodable = Mesh()
+            }
+            context.setObject(newMesh, forKeyedSubscript: "newMesh" as NSString)
+            
+            // updateMesh()
+            // update the current node's mesh to take into account new polygons and parts, this is a slow operation and should only be done on initialization
+            let updateMesh: @convention(block) () -> Void = { [weak self] in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    mesh.createBuffers()
+                    mesh.calcBounds(calcPartBounds: true)
+                }
+            }
+            context.setObject(updateMesh, forKeyedSubscript: "updateMesh" as NSString)
+            
+            // addPart()
+            // add a part to the end of the current node's mesh, if the current node has a mesh
+            let addPart: @convention(block) () -> Void = { [weak self] in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    mesh.parts.append(MeshPart())
+                }
+            }
+            context.setObject(addPart, forKeyedSubscript: "addPart" as NSString)
+            
             // partCount()
             // return the number of parts in the current node's mesh
             let partCount: @convention(block) () -> Int = { [weak self] in
@@ -907,6 +933,237 @@ public class Api {
                 return nil
             }
             context.setObject(partName, forKeyedSubscript: "partName" as NSString)
+            
+            // addVertex(part, x, y, z)
+            // add an xyz vertex to the current node's mesh part, returns the index of the new vertex or -1 if the current node does not have a mesh
+            let addVertex: @convention(block) (Int, Float, Float, Float) -> Int = { [weak self] i, x, y, z in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        var v = Vertex()
+                        var j = mesh.parts[i].vertices.count
+                        
+                        v.position = Vec3(x, y, z)
+                        mesh.parts[i].vertices.append(v)
+                        
+                        return j
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+                return -1
+            }
+            context.setObject(addVertex, forKeyedSubscript: "addVertex" as NSString)
+            
+            // getVertex(part, v)
+            // set the vector buffer's xyz to the xyz of given vertex on the current node's mesh part
+            let getVertex: @convention(block) (Int, Int) -> Void = { [weak self] i, v in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if v >= 0 && v < mesh.parts[i].vertices.count {
+                            let vertex = mesh.parts[i].vertices[v]
+ 
+                            self!._buffer = Vec4(vertex.position.x, vertex.position.y, vertex.position.z, 0)
+                        } else {
+                            self!.raiseError("part vertex index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(getVertex, forKeyedSubscript: "getVertex" as NSString)
+            
+            // setTextureCoordinate(part, v, s, t)
+            // set the st texture coordinate, of the given vertex on current node's mesh part
+            let setTextureCoordinate: @convention(block) (Int, Int, Float, Float) -> Void = { [weak self] i, v, s, t in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if v >= 0 && v < mesh.parts[i].vertices.count {
+                            var vertex = mesh.parts[i].vertices[v]
+                            
+                            vertex.textureCoordinate = Vec2(s, t)
+                            
+                            mesh.parts[i].vertices[v] = vertex
+                        } else {
+                            self!.raiseError("part vertex index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(setTextureCoordinate, forKeyedSubscript: "setTextureCoordinate" as NSString)
+            
+            // setLightMapCoordinate(part, v, s, t)
+            // set the st light map coordinate, of the given vertex on the current node's mesh part
+            let setLightMapCoordinate: @convention(block) (Int, Int, Float, Float) -> Void = { [weak self] i, v, s, t in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if v >= 0 && v < mesh.parts[i].vertices.count {
+                            var vertex = mesh.parts[i].vertices[v]
+                            
+                            vertex.lightMapCoordinate = Vec2(s, t)
+                            
+                            mesh.parts[i].vertices[v] = vertex
+                        } else {
+                            self!.raiseError("part vertex index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(setLightMapCoordinate, forKeyedSubscript: "setLightMapCoordinate" as NSString)
+            
+            // setVertexNormal(part, v, x, y, z)
+            // set the xyz normal, of given vertex on the current node's mesh part, the normal will be normalized first
+            let setVertexNormal: @convention(block) (Int, Int, Float, Float, Float) -> Void = { [weak self] i, v, x, y, z in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if v >= 0 && v < mesh.parts[i].vertices.count {
+                            var vertex = mesh.parts[i].vertices[v]
+                            
+                            vertex.normal = simd_normalize(Vec3(x, y, z));
+                            
+                            mesh.parts[i].vertices[v] = vertex
+                        } else {
+                            self!.raiseError("part vertex index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(setVertexNormal, forKeyedSubscript: "setVertexNormal" as NSString)
+            
+            // getVertexNormal(part, v)
+            // set the vector buffer's xyz to the xyz normal, of given vertex on the current node's mesh part
+            let getVertexNormal: @convention(block) (Int, Int) -> Void = { [weak self] i, v in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if v >= 0 && v < mesh.parts[i].vertices.count {
+                            let vertex = mesh.parts[i].vertices[v]
+ 
+                            self!._buffer = Vec4(vertex.normal.x, vertex.normal.y, vertex.normal.z, 0)
+                        } else {
+                            self!.raiseError("part vertex index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(getVertexNormal, forKeyedSubscript: "getVertexNormal" as NSString)
+            
+            // setVertexColor(part, v, r, g, b, a)
+            // set the rgba color, of given vertex on the current node's mesh part
+            let setVertexColor: @convention(block) (Int, Int, Float, Float, Float, Float) -> Void = { [weak self] i, v, r, g, b, a in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if v >= 0 && v < mesh.parts[i].vertices.count {
+                            var vertex = mesh.parts[i].vertices[v]
+                            
+                            vertex.color = Vec4(r, g, b, a)
+                            
+                            mesh.parts[i].vertices[v] = vertex
+                        } else {
+                            self!.raiseError("part vertex index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(setVertexColor, forKeyedSubscript: "setVertexColor" as NSString)
+            
+            // polygonCount(part)
+            // return the number of polygons in the given mesh part, return -1 if the current node does not have a mesh
+            let polygonCount: @convention(block) (Int) -> Int = { [weak self] i in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        return mesh.parts[i].polygons.count
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+                return -1
+            }
+            context.setObject(polygonCount, forKeyedSubscript: "polygonCount" as NSString)
+            
+            // polygonVertexCount(part, p)
+            // return the number of vertices in the given mesh part's polygon p, return -1 if the current node does not have a mesh
+            let polygonVertexCount: @convention(block) (Int, Int) -> Int = { [weak self] i, p in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if p >= 0 && p < mesh.parts[i].polygons.count {
+                            return mesh.parts[i].polygons[p].count
+                        } else {
+                            self!.raiseError("polygon index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+                return -1
+            }
+            context.setObject(polygonVertexCount, forKeyedSubscript: "polygonVertexCount" as NSString)
+            
+            // polygonVertex(part, p, v)
+            // return the index of the the given part's polygon vertex or -1 if the current node does not have a mesh
+            let polygonVertex: @convention(block) (Int, Int, Int) -> Int = { [weak self] i, p, v in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if p >= 0 && p < mesh.parts[i].polygons.count {
+                            if v >= 0 && v < mesh.parts[i].polygons[p].count {
+                                return mesh.parts[i].polygons[p][v]
+                            } else {
+                                self!.raiseError("polygon vertex index out of bounds")
+                            }
+                        } else {
+                            self!.raiseError("polygon index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+                return -1
+            }
+            context.setObject(polygonVertexCount, forKeyedSubscript: "polygonVertexCount" as NSString)
+            
+            // addPolygon(part, indices)
+            // add a polygon to the given mesh part
+            let addPolygon: @convention(block) (Int, [Int]) -> Void = { [weak self] i, indices in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if indices.count < 3 {
+                        self!.raiseError("mesh part invalid polygon, must have at least 3 sides")
+                    }
+                    if i >= 0 && i < mesh.parts.count {
+                        for j in indices {
+                            if j < 0 || j >= mesh.parts[i].vertices.count {
+                                self!.raiseError("mesh part vertex index out of bounds")
+                                return
+                            }
+                        }
+                        
+                        let part = mesh.parts[i]
+                        let tris = indices.count - 2
+
+                        part.polygons.append(indices)
+                        for j in (0..<tris) {
+                            let i1 = Int32(indices[0])
+                            let i2 = Int32(indices[j + 1])
+                            let i3 = Int32(indices[j + 2])
+                            
+                            part.indices.append(i1)
+                            part.indices.append(i2)
+                            part.indices.append(i3)
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(addPolygon, forKeyedSubscript: "addPolygon" as NSString)
             
             // setMeshTexture(part, fileName)
             // set the current node's mesh part texture to the given png file name
@@ -941,6 +1198,23 @@ public class Api {
                 }
             }
             context.setObject(setMeshDecal, forKeyedSubscript: "setMeshDecal" as NSString)
+            
+            // setLightMap(part, fileName)
+            // set the current node's mesh part light map to the given png file name
+            let setLightMap: @convention(block) (Int, String) -> Void = { [weak self] part, fileName in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if part >= 0 && part < mesh.parts.count {
+                        do {
+                            mesh.parts[part].lightMap = try GameView.instance!.assets.load(path: fileName) as? MTLTexture
+                        } catch {
+                            self!.raiseError(error.localizedDescription)
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(setLightMap, forKeyedSubscript: "setLightMap" as NSString)
             
             // join()
             // join all meshes under the current node to one mesh and detach all children

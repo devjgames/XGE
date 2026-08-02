@@ -14,8 +14,12 @@ public let MaxLights = 8
 public struct Vertex {
     public var position = Vec3(0, 0, 0)
     public var textureCoordinate = Vec2(0, 0)
+    public var lightMapCoordinate = Vec2(0, 0)
     public var normal = Vec3(0, 0, 0)
     public var color = Vec4(1, 1, 1, 1)
+    
+    public init() {
+    }
 }
 
 public struct VertexData {
@@ -28,6 +32,9 @@ public struct VertexData {
     public var warpFrequency:Float = 0
     public var warpTime:Float = 0
     public var warpY:Int32 = 0
+    
+    public init() {
+    }
 }
 
 public struct FragmentData {
@@ -38,12 +45,19 @@ public struct FragmentData {
     public var specularPower:Float = 32
     public var textureEnabled:Int32 = 0
     public var decalEnabled:Int32 = 0
+    public var lightMapEnabled:Int32 = 0
     public var lightingEnabled:Int32 = 0
     public var lightCount:Int32 = 0
+    
+    public init() {
+    }
 }
 
 public struct Light {
     public var position = Vec3(0, 0, 0)
     public var color = Vec4(1, 1, 1, 1)
     public var radius:Float = 100
+    
+    public init() {
+    }
 }
