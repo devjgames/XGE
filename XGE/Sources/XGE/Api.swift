@@ -348,8 +348,8 @@ public class Api {
             // isect(ox, oy, oz, dx, dy, dz, buffer, collidablesOnly)
             // pick the closest node, using a ray with the given origin and direction, buffering triangles by the given buffer amount, including all nodes or only
             // collidable nodes, rooted at the current node, if an intersection occurs then, the current node will be set to the closest intersected node, returns true,
-            // and the current node's data variables '_rx', '_ry', '_rz', '_ux', '_uy', '_uz', '_fx', '_fy', '_fz' will be set to the right, up and forward vectors of the hit triangle
-            // set and get the intersection time with the time functions
+            // and the current node's data variables '_rx', '_ry', '_rz', '_ux', '_uy', '_uz', '_fx', '_fy', '_fz', '_ti', will be set to the right, up and forward vectors of the hit triangle
+            // and the triangle index in the graphic, set and get the intersection time with the time functions
             let isect: @convention(block) (Float, Float, Float, Float, Float, Float, Float, Bool) -> Bool = {
                 [weak self] ox, oy, oz, dx, dy, dz, buffer, collidablesOnly in
                 
@@ -370,6 +370,11 @@ public class Api {
                         node.data["_fx"] = f.x
                         node.data["_fy"] = f.y
                         node.data["_fz"] = f.z
+                        node.data["_ti"] = -1
+                        
+                        if let i = self!._collider.hitTriangleIndex as? Int {
+                            node.data["_ti"] = i
+                        }
                     }
                     return true
                 }
@@ -934,6 +939,20 @@ public class Api {
             }
             context.setObject(partName, forKeyedSubscript: "partName" as NSString)
             
+            // vertexCount(part)
+            // return the number of vertices in the given part of the current node's mesh
+            let vertexCount: @convention(block) (Int) -> Int = { [weak self] i in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        return mesh.parts[i].vertices.count
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+                return 0
+            }
+            context.setObject(vertexCount, forKeyedSubscript: "vertexCount" as NSString)
+            
             // addVertex(part, x, y, z)
             // add an xyz vertex to the current node's mesh part, returns the index of the new vertex or -1 if the current node does not have a mesh
             let addVertex: @convention(block) (Int, Float, Float, Float) -> Int = { [weak self] i, x, y, z in
@@ -1128,38 +1147,40 @@ public class Api {
                 }
                 return -1
             }
-            context.setObject(polygonVertexCount, forKeyedSubscript: "polygonVertexCount" as NSString)
+            context.setObject(polygonVertex, forKeyedSubscript: "polygonVertex" as NSString)
             
             // addPolygon(part, indices)
             // add a polygon to the given mesh part
-            let addPolygon: @convention(block) (Int, [Int]) -> Void = { [weak self] i, indices in
-                if let mesh = self!._current!.encodable as? Mesh {
-                    if indices.count < 3 {
-                        self!.raiseError("mesh part invalid polygon, must have at least 3 sides")
-                    }
-                    if i >= 0 && i < mesh.parts.count {
-                        for j in indices {
-                            if j < 0 || j >= mesh.parts[i].vertices.count {
-                                self!.raiseError("mesh part vertex index out of bounds")
-                                return
+            let addPolygon: @convention(block) (Int, Any) -> Void = { [weak self] i, indices in
+                if let indices = indices as? [Int] {
+                    if let mesh = self!._current!.encodable as? Mesh {
+                        if indices.count < 3 {
+                            self!.raiseError("mesh part invalid polygon, must have at least 3 sides")
+                        }
+                        if i >= 0 && i < mesh.parts.count {
+                            for j in indices {
+                                if j < 0 || j >= mesh.parts[i].vertices.count {
+                                    self!.raiseError("mesh part vertex index out of bounds")
+                                    return
+                                }
                             }
-                        }
-                        
-                        let part = mesh.parts[i]
-                        let tris = indices.count - 2
-
-                        part.polygons.append(indices)
-                        for j in (0..<tris) {
-                            let i1 = Int32(indices[0])
-                            let i2 = Int32(indices[j + 1])
-                            let i3 = Int32(indices[j + 2])
                             
-                            part.indices.append(i1)
-                            part.indices.append(i2)
-                            part.indices.append(i3)
+                            let part = mesh.parts[i]
+                            let tris = indices.count - 2
+                            
+                            part.polygons.append(indices)
+                            for j in (0..<tris) {
+                                let i1 = Int32(indices[0])
+                                let i2 = Int32(indices[j + 1])
+                                let i3 = Int32(indices[j + 2])
+                                
+                                part.indices.append(i1)
+                                part.indices.append(i2)
+                                part.indices.append(i3)
+                            }
+                        } else {
+                            self!.raiseError("part index out of bounds")
                         }
-                    } else {
-                        self!.raiseError("part index out of bounds")
                     }
                 }
             }

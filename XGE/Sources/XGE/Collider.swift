@@ -21,6 +21,7 @@ public class Collider {
     private var _onGround = false
     private var _hitRoof = false
     private var _hitNode:Node?
+    private var _hitTriangleIndex:Int?
     private var _hitTriangle:Triangle?
     private var _resolvedPosition:Vec3?
     private var _resolvedNormal:Vec3?
@@ -35,6 +36,10 @@ public class Collider {
     
     public var hitTriangle:Triangle? {
         get { _hitTriangle }
+    }
+    
+    public var hitTriangleIndex:Int? {
+        get { _hitTriangleIndex }
     }
     
     public var onGround:Bool {
@@ -73,6 +78,7 @@ public class Collider {
     public func isect(root:Node, origin:Vec3, direction:Vec3, buffer:Float, collidablesOnly: Bool, time:inout Float) -> Node? {
         _hitNode = nil
         _hitTriangle = nil
+        _hitTriangleIndex = nil
         
         isect(node: root, origin: origin, direction: direction, buffer: buffer, collidablesOnly: collidablesOnly, time: &time)
         
@@ -94,6 +100,7 @@ public class Collider {
                     if triangle!.isects(origin: origin, direction: direction, buffer: buffer, time: &time) {
                         _hitTriangle = triangle
                         _hitNode = node
+                        _hitTriangleIndex = i
                     }
                 }
             } else if !collidablesOnly {
@@ -106,6 +113,7 @@ public class Collider {
                         if triangle.isects(origin: origin, direction: direction, buffer: buffer, time: &time) {
                             _hitTriangle = triangle
                             _hitNode = node
+                            _hitTriangleIndex = i
                         }
                     }
                 }
