@@ -487,7 +487,26 @@ public class Api {
             // put(name, value)
             // set a variable with the given name, on the current node, to the given value
             let put: @convention(block) (String, Any) -> Void = { [weak self] name, value in
-                self!._current!.data[name] = value
+                var v:Any?
+                
+                if let x = value as? Int32 {
+                    v = x
+                } else if let x = value as? Int {
+                    v = x
+                } else if let x = value as? Float {
+                    v = x
+                } else if let x = value as? Double {
+                    v = x
+                } else if let x = value as? Bool {
+                    v = x
+                } else if let x = value as? NSString {
+                    v = "\(x)"
+                } else if let x = value as? String {
+                    v = "\(x)"
+                } else {
+                    self!.raiseError("failed to put value, invalid type")
+                }
+                self!._current!.data[name] = v
             }
             context.setObject(put, forKeyedSubscript: "put" as NSString)
             
