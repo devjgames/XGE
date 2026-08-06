@@ -992,6 +992,26 @@ public class Api {
             }
             context.setObject(addVertex, forKeyedSubscript: "addVertex" as NSString)
             
+            // setVertex(part, v, x, y, z)
+            // set the given vertices xyz on the current node's mesh part
+            let setVertex: @convention(block) (Int, Int, Float, Float, Float) -> Void = { [weak self] i, v, x, y, z in
+                if let mesh = self!._current!.encodable as? Mesh {
+                    if i >= 0 && i < mesh.parts.count {
+                        if v >= 0 && v < mesh.parts[i].vertices.count {
+                            var vertex = mesh.parts[i].vertices[v]
+                            
+                            vertex.position = Vec3(x, y, z)
+                            mesh.parts[i].vertices[v] = vertex
+                        } else {
+                            self!.raiseError("part vertex index out of bounds")
+                        }
+                    } else {
+                        self!.raiseError("part index out of bounds")
+                    }
+                }
+            }
+            context.setObject(setVertex, forKeyedSubscript: "setVertex" as NSString)
+            
             // getVertex(part, v)
             // set the vector buffer's xyz to the xyz of given vertex on the current node's mesh part
             let getVertex: @convention(block) (Int, Int) -> Void = { [weak self] i, v in

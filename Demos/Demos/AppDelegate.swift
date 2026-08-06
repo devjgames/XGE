@@ -42,6 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MTKViewDelegate {
         
         gameView!.delegate = self
         gameView!.newScene()
+        
+        gameView!.x2 = true
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

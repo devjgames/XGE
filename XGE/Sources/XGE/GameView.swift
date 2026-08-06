@@ -144,7 +144,7 @@ open class GameView : MTKView {
         clearDepth = 1.0
         drawableSize = frame.size
         layer!.magnificationFilter = .nearest
-        layer!.minificationFilter = .nearest
+        layer!.minificationFilter = .trilinear
         
         if !Log.hasInstance {
             _ = Log()
@@ -177,6 +177,17 @@ open class GameView : MTKView {
     
     public func activate() {
         GameView._instance = self
+    }
+    
+    public var x2: Bool {
+        get { drawableSize.width / frame.size.width > 1.5 }
+        set {
+            if newValue {
+                drawableSize = CGSize(width: frame.size.width * 2, height: frame.size.height * 2)
+            } else {
+                drawableSize = frame.size;
+            }
+        }
     }
     
     public override var preferredDrawableSize: CGSize {

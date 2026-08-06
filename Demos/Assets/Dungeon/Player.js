@@ -54,11 +54,11 @@ if(init()) {
 			)
 		pushSprite(
 			22, 2, 1, 1, 
-			viewWidth() / 2 - 8, viewHeight() / 2 - 1, 16, 2, 1, 1, 1, 1
+			width() / 2 - 8, height() / 2 - 1, 16, 2, 1, 1, 1, 1
 		);
 		pushSprite(
 			22, 2, 1, 1, 
-			viewWidth() / 2 - 1, viewHeight() / 2 - 8, 2, 16, 1, 1, 1, 1
+			width() / 2 - 1, height() / 2 - 8, 2, 16, 1, 1, 1, 1
 		);
 		rotateAroundEye(-deltaX(), -deltaY());
 		toState();
