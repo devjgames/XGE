@@ -127,4 +127,4 @@ Top.txt 384.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
 # name x y z rx ry rz ux uy uz fx fy fz
 Top.txt 576.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
 # name x y z rx ry rz ux uy uz fx fy fz
-player.txt 0.0 24.0 -75.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 player
+player.txt 0.0 67.0 -75.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 player_1

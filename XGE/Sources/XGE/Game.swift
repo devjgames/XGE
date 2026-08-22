@@ -19,6 +19,7 @@ public class Game {
     private var _topDown = false
     private var _speed:Float = 100
     private var _move:Int = 0
+    private var _dir:Int = 1
     private var _offset = Vec3(0, 200, 100)
     private var _playerName = "player.txt"
     private var _clip = Vec4(0, 0, 0, 0)
@@ -33,6 +34,7 @@ public class Game {
     private var _textScale:Int = 1
     private var _loadScene:String?
     private var _code:String?
+    private var _joined:[String:Node] = [:]
     
     public init() {
         
@@ -99,19 +101,21 @@ public class Game {
         _topDown = false
         _speed = 100
         _move = 0
+        _dir = 1
         _offset = Vec3(0, 200, 100)
         _playerName = "player.txt"
         _clip = Vec4(0, 0, 0, 0)
         _fontCols = 8
         _fontCharW = 16
         _fontCharH = 16
-        _context = nil
         _node = nil
         _current = nil
-        _hasError = false
         _showStats = true
         _loadScene = nil
-        _code = nil
+        
+        if(name as NSString).pathExtension == "scene" {
+            _joined = [:]
+        }
         
         collider.radius = 16
         
@@ -223,8 +227,6 @@ public class Game {
         let game = try loadGame()
 
         if (node.name as NSString).pathExtension == "txt" {
-            try load(gameView: gameView, root: node, name: node.name)
-            
             var join = false
             
             if let tokens = game["join.*"] {
@@ -233,8 +235,21 @@ public class Game {
             if let tokens = game["join.\(node.name)"] {
                 join = (tokens[1] == "true") ? true : false
             }
+            
             if join {
-                node.join()
+                if let jnode = _joined[node.name] {
+                    node.detachAll()
+                    node.encodable = jnode.encodable
+                } else {
+                    try load(gameView: gameView, root: node, name: node.name)
+                    
+                    Log.instance.put("joining \(node.name) ...")
+                    node.join()
+                    
+                    _joined[node.name] = node
+                }
+            } else {
+                try load(gameView: gameView, root: node, name: node.name)
             }
         } else if (node.name as NSString).pathExtension == "obj" {
             node.encodable = try gameView.assets.load(path: node.name) as? Mesh
@@ -453,7 +468,15 @@ public class Game {
         }
     }
     
+    public func clearContext() {
+        _context = nil
+        _hasError = false
+        _code = nil
+    }
+    
     public func update(gameView:GameView, textScale: Int, textColor1: Vec4, textColor2: Vec4) {
+        setupJSContext()
+        
         _textScale = textScale
         if _showStats {
             if let sprite = gameView.scene.sprite {
@@ -522,8 +545,12 @@ public class Game {
             vx = _speed
         }
         
+        if _move >= 1 && _move <= 4 {
+            _dir = _move
+        }
+        
         if let node = gameView.scene.root.find(name: _playerName) {
-            collider.velocity.y = -2000 * gameView.elapsedTime
+            collider.velocity.y -= 2000 * gameView.elapsedTime
             collider.velocity *= Vec3(0, 1, 0)
             collider.velocity += Vec3(vx, 0, vz)
             node.position = collider.resolve(root: gameView.scene.root, position: node.position)
@@ -894,9 +921,25 @@ public class Game {
                 
                 let isect: @convention(block) () -> Bool = { [weak self] in
                     if let node = self!._current {
-                        let o = GameView.instance!.scene.eye
-                        let d = simd_normalize(GameView.instance!.scene.target - o)
+                        var o = GameView.instance!.scene.eye
+                        var d = simd_normalize(GameView.instance!.scene.target - o)
                         var t = Float.greatestFiniteMagnitude
+                        
+                        if self!._topDown {
+                            if let player = GameView.instance!.scene.root.find(name: self!._playerName) {
+                                o = player.position
+                                
+                                if self!._dir == 1 {
+                                    d = Vec3(0, 0, -1)
+                                } else if self!._dir == 2 {
+                                    d = Vec3(0, 0, 1)
+                                } else if self!._dir == 3 {
+                                    d = Vec3(-1, 0, 0)
+                                } else {
+                                    d = Vec3(1, 0, 0)
+                                }
+                            }
+                        }
                         
                         if let n = self!.collider.isect(root: GameView.instance!.scene.root, origin: o, direction: d, buffer: 1, collidablesOnly: true, time: &t) {
                             if let tri = self!.collider.hitTriangle {
@@ -994,6 +1037,15 @@ public class Game {
 #endif
                 }
                 context.setObject(iOS, forKeyedSubscript: "iOS" as NSString)
+                
+                let emitLight: @convention(block) (Float, Float, Float, Float, Float) -> Void = { [weak self] r, g, b, a, radius in
+                    if let node = self!._current {
+                        node.emitsLight = true
+                        node.lightColor = Vec4(r, g, b, a)
+                        node.lightRadius = radius
+                    }
+                }
+                context.setObject(emitLight, forKeyedSubscript: "emitLight" as NSString)
             }
         }
     }
@@ -1003,9 +1055,7 @@ public class Game {
             if let followEye = node.data["followEye"] as? Bool {
                 node.position = gameView.scene.eye
             }
-            
-            setupJSContext()
-            
+
             if let context = _context, let code = _code {
                 if !_hasError {
                     _current = node

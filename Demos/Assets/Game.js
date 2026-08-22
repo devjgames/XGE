@@ -46,14 +46,20 @@
 // mouseX() # location of touch or mouse
 // mouseY() # location of touch or mouse
 // loadScene(name) # load a scene
-// move(dir) # move 0,1,2,3,4 none,up,down,left,right for top down games
+// move(dir) # move 0,1,2,3 none,up,down,left,right for top down games
 // iOS() # running on iOS
+// emitLight(r, g, b, a, radius) # emit light source
 
 if(value() == "spin") {
     rotate(1, 90);
-} else if(value() == "player") {
-    
+} else if(value().startsWith("player")) {    
     move(0);
+    
+    var down;
+    
+    if(down === undefined) {
+        down = false;
+    }
     
     if(iOS()) {
         var mx = mouseX() - viewWidth() / 2
@@ -84,5 +90,21 @@ if(value() == "spin") {
         } else if(isKeyDown(124)) {
             move(4);
         }
+    }
+    
+    if(isKeyDown(49)) {
+        if(!down) {
+            down = true;
+            
+            var tokens = value().split('_');
+            
+            if(tokens[1] == "1") {
+                loadScene("scene2.scene");
+            } else {
+                loadScene("scene1.scene");
+            }
+        }
+    } else {
+        down = false;
     }
 }
