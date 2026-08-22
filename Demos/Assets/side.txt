@@ -1,0 +1,9 @@
+flat2.obj 0 0 -64 1 0 0 0 1 0 0 0 1
+flat1.obj 0 0 0 1 0 0 0 1 0 0 0 1
+flat1.obj -64 0 0 1 0 0 0 1 0 0 0 1
+flat3.obj 0 0 64 1 0 0 0 1 0 0 0 1
+cornerOut.obj -64 0 64 1 0 0 0 1 0 0 0 1
+cornerOut.obj -64 0 -64 0 0 1 0 1 0 -1 0 0
+side.obj 64 0 0 -1 0 0 0 1 0 0 0 -1
+side.obj 64 0 -64 -1 0 0 0 1 0 0 0 -1
+side.obj 64 0 64 -1 0 0 0 1 0 0 0 -1

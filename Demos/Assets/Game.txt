@@ -1,0 +1,53 @@
+# commands
+# --------
+# topDown (true|false)
+# speed (number)
+# radius (number)
+# offset (vec2) # for top down games
+# playerName (string)
+# font (columns charW charH)
+# clip (vec4) # for top down games
+# join.*|name (true|false)
+# sequence.name (int int int true|false) # for kfm assets
+# warp.name (true|false)
+# scale.name (vec3)
+# receivesLight.*|name (true|false)
+# visible.*|name (true|false)
+# collidable.*|name (true|false)
+# dynamic.*|name (true|false)
+# ambientColor.*|name (r g b a)
+# diffuseColor.*|name (r g b a)
+# depthWriteEnabled.*|name (true|false)
+# depthTestEnabled.*|name (true|false)
+# blendEnabled.*|name (true|false)
+# alphaBlend.*|name (true|false)
+# zOrder.*|name (int)
+# followEye.name (true|false)
+# door.name (radius amount) # radius is the distance from the player to the door when the amount attenuation is applied to open or close the door
+# torch.name (x y z lightRadius lightR lightG lightB lightA flicker scaleX scaleY scaleZ)
+# decal.name (part name)
+
+topDown true
+speed 100
+offset 150 75
+clip 300 -300 -1000 1000
+playerName player.txt
+join.* true
+join.player.txt false
+receivesLight.* false
+collidable.* true
+collidable.cube.obj false
+collidable.energy.obj false
+collidable.shadowPlane.obj false
+depthWriteEnabled.energy.obj false
+blendEnabled.energy.obj true
+alphaBlend.energy.obj true
+zOrder.energy.obj 200
+depthWriteEnabled.shadowPlane.obj false
+blendEnabled.shadowPlane.obj true
+alphaBlend.shadowPlane.obj true
+zOrder.shadowPlane.obj 100
+scale.cube.obj 0.5 0.5 0.5
+
+
+

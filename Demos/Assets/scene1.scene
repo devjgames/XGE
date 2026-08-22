@@ -1,0 +1,130 @@
+# name x y z rx ry rz ux uy uz fx fy fz
+End.txt 0.0 0.0 0.0 0.99999994 0.0 1.26880515e-08 0.0 1.0 0.0 1.26880515e-08 0.0 0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Hall.txt 0.0 0.0 -192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Side.txt 0.0 0.0 -384.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Hall.txt -192.0 0.0 -384.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Hall.txt -384.0 0.0 -384.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Corner.txt -576.0 0.0 -384.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Hall.txt -576.0 0.0 -576.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+End.txt -576.0 0.0 -768.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Hall.txt 192.0 0.0 -384.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Corner.txt 384.0 0.0 -384.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Hall.txt 384.0 0.0 -576.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Corner.txt 384.0 0.0 -768.0 0.99999994 0.0 1.26880515e-08 0.0 1.0 0.0 1.26880515e-08 0.0 0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Corner.txt 192.0 0.0 -768.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+End.txt 192.0 0.0 -960.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -192.0 0.0 -192.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -192.0 0.0 0.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -384.0 0.0 -192.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -576.0 0.0 -192.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -384.0 0.0 -0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -576.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 192.0 0.0 -192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 192.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 384.0 0.0 -192.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 384.0 0.0 -0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 192.0 0.0 -576.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 0.0 0.0 -576.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -192.0 0.0 -576.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -384.0 0.0 -576.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -384.0 0.0 -768.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -192.0 0.0 -768.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 0.0 0.0 -768.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 384.0 0.0 -960.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -0.0 0.0 -960.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -192.0 0.0 -960.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -384.0 0.0 -960.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -576.0 0.0 -960.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 384.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 192.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -0.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -192.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -384.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -576.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 -0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 -192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 -384.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 -576.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 -768.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 -960.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 -0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 -192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 -384.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 -576.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 -768.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 -960.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -768.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -576.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -384.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -192.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt -0.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 192.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 384.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Top.txt 576.0 0.0 -1152.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+player.txt 0.0 24.0 -75.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 player

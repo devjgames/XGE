@@ -1,0 +1,9 @@
+tflat1.obj 0 0 0 1 0 0 0 1 0 0 0 1
+tflat1.obj 64 0 -64 1 0 0 0 1 0 0 0 1
+tflat1.obj -64 0 -64 1 0 0 0 1 0 0 0 1
+tflat1.obj -64 0 64 1 0 0 0 1 0 0 0 1
+tflat1.obj 64 0 64 1 0 0 0 1 0 0 0 1
+tflat2.obj -64 0 0 1 0 0 0 1 0 0 0 1
+tflat3.obj 0 0 64 1 0 0 0 1 0 0 0 1
+tflat1.obj 0 0 -64 1 0 0 0 1 0 0 0 1
+tflat1.obj 64 0 0 1 0 0 0 1 0 0 0 1

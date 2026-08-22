@@ -1,0 +1,18 @@
+# name x y z rx ry rz ux uy uz fx fy fz
+flat1.obj 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj -64.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+flat2.obj 0.0 0.0 -64.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+flat3.obj 0.0 0.0 64.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj 64.0 0.0 0.0 -1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 -1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj -64.0 0.0 64.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj -64.0 0.0 -64.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj 64.0 0.0 64.0 -1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 -1.0
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj 64.0 0.0 -64.0 -1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 -1.0
