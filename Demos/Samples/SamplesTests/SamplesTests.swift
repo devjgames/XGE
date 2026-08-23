@@ -1,13 +1,14 @@
 //
-//  DemosTests.swift
-//  DemosTests
+//  SamplesTests.swift
+//  SamplesTests
 //
-//  Created by Douglas McNamara on 8/10/26.
+//  Created by Douglas McNamara on 8/22/26.
 //
 
 import Testing
+@testable import Samples
 
-struct DemosTests {
+struct SamplesTests {
 
     @Test func example() async throws {
         // Write your test here and use APIs like `#expect(...)` to check expected conditions.

@@ -1,13 +1,13 @@
 //
-//  DemosUITestsLaunchTests.swift
-//  DemosUITests
+//  GameMakerDemoUITestsLaunchTests.swift
+//  GameMakerDemoUITests
 //
-//  Created by Douglas McNamara on 8/10/26.
+//  Created by Douglas McNamara on 8/22/26.
 //
 
 import XCTest
 
-final class DemosUITestsLaunchTests: XCTestCase {
+final class GameMakerDemoUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,3 +1,5 @@
 .DS_Store
-Demos/*.xcassets
-Demos.xcodeproj
+GameMakerDemo/GameMakerDemo/*.xcassets
+GameMakerDemo/GameMakerDemo.xcodeproj
+Samples/Samples/*.xcassets
+Samples/Samples.xcodeproj

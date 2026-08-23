@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  Demos
+//  GameMakerDemo
 //
-//  Created by Douglas McNamara on 8/10/26.
+//  Created by Douglas McNamara on 8/22/26.
 //
 
 import SwiftUI
@@ -12,4 +12,5 @@ struct ContentView: View {
         GameControl()
     }
 }
+
 

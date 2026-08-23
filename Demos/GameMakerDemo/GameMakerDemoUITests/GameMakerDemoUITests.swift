@@ -1,13 +1,13 @@
 //
-//  DemosUITests.swift
-//  DemosUITests
+//  GameMakerDemoUITests.swift
+//  GameMakerDemoUITests
 //
-//  Created by Douglas McNamara on 8/10/26.
+//  Created by Douglas McNamara on 8/22/26.
 //
 
 import XCTest
 
-final class DemosUITests: XCTestCase {
+final class GameMakerDemoUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
