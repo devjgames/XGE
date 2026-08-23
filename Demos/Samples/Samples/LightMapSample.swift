@@ -24,9 +24,10 @@ public class LightMapSample : Sample {
         let sprite = scene.sprite!
         
         sprite.push("""
-            Light Map Sample
             FPS = \(gameView.fps)
-            ESC = Quit
+            TRI = \(scene.trianglesRendered)
+            RND = \(scene.rendered)
+            BND = \(scene.cullStateBinds):\(scene.depthStateBinds):\(scene.renderStateBinds)
             """, 1, 8, 16, 16, 5, 10, 10, Vec4(1, 1, 0.5, 1), Vec4(1, 0.5, 0, 1))
     }
     

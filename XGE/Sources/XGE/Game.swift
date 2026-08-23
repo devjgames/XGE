@@ -1085,6 +1085,36 @@ public class Game {
                 }
                 context.setObject(save, forKeyedSubscript: "save" as NSString)
                 
+                let setBlendState: @convention(block) (Int) -> Void = { [weak self] state in
+                    if let node = self!._current {
+                        if state == 0 {
+                            node.depthWriteEnabled = true
+                            node.depthTestEnabled = true
+                            node.blendEnabled = false
+                        } else {
+                            node.depthWriteEnabled = false
+                            node.depthTestEnabled = true
+                            node.blendEnabled = true
+                            node.alphaBlend = (state == 1) ? true : false
+                        }
+                    }
+                }
+                context.setObject(setBlendState, forKeyedSubscript: "setBlendState" as NSString)
+                
+                let setZOrder: @convention(block) (Int) -> Void = { [weak self] zOrder in
+                    if let node = self!._current {
+                        node.zOrder = zOrder
+                    }
+                }
+                context.setObject(setZOrder, forKeyedSubscript: "setZOrder" as NSString)
+                
+                let setTintColor: @convention(block) (Float, Float, Float, Float) -> Void = { [weak self] r, g, b, a in
+                    if let node = self!._current {
+                        node.tintColor = Vec4(r, g, b, a)
+                    }
+                }
+                context.setObject(setTintColor, forKeyedSubscript: "setTintColor" as NSString)
+                
                 do {
                     let items = try FileManager.default.contentsOfDirectory(atPath: AssetManager.rootURL!.path)
                     

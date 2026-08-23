@@ -42,6 +42,7 @@ public struct FragmentData {
     public var ambientColor = Vec4(0, 0, 0, 0)
     public var diffuseColor = Vec4(0, 0, 0, 0)
     public var specularColor = Vec4(0, 0, 0, 1)
+    public var tintColor = Vec4(1, 1, 1, 1)
     public var specularPower:Float = 32
     public var textureEnabled:Int32 = 0
     public var decalEnabled:Int32 = 0

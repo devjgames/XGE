@@ -3,7 +3,7 @@ import bpy
 # Set your desired lightmap configuration
 LIGHTMAP_NAME = "lightmap"
 TEXTURE_NAME = "Lightmap_Bake_Target"
-RESOLUTION = 2048  # Options: 1024, 2048, 4096
+RESOLUTION = 1024  # Options: 1024, 2048, 4096
 
 def setup_lightmap_automation():
     # 1. Validation & Mode Reset

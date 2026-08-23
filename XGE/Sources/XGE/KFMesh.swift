@@ -206,6 +206,7 @@ public class KFMesh : Encodable {
             fragmentData.eye = GameView.instance!.scene.eye
             fragmentData.specularPower = node.specularPower
             fragmentData.specularColor = node.specularColor
+            fragmentData.tintColor = node.tintColor
             
             encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
             encoder.setVertexBytes(&vertexData, length: MemoryLayout<VertexData>.stride, index: 1)

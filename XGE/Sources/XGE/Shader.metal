@@ -42,6 +42,7 @@ struct FragmentData {
     float4 ambientColor;
     float4 diffuseColor;
     float4 specularColor;
+    float4 tintColor;
     float specularPower;
     int textureEnabled;
     int decalEnabled;
@@ -120,6 +121,8 @@ fragment float4 fragmentShader(FragmentInput in [[stage_in]],
         
         color.rgb = (1.0 - d.a) * color.rgb + d.a * d.rgb;
     }
+    color *= data.tintColor;
+    
     return color;
 }
                                         

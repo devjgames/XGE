@@ -51,6 +51,9 @@
 // emitLight(r, g, b, a, radius) # emit light source
 // load() # return the text in _data.txt or null if the file does not exist
 // save(text) # save the given text to _data.txt
+// setBlendState(state) # 0,1,2 opaque,alpha,add
+// setZOrder(zOrder) # set z order
+// setTintColor(r, g, b, a) # set tint color
 
 if(value() == "spin") {
     rotate(1, 90);

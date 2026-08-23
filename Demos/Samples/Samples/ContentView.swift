@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        GameControl()
+        NavigationStack {
+            GameControl()
+                .navigationTitle("Samples - down arrow (next sample), space (run sample), esc (quit sample)")
+        }
     }
 }

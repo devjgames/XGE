@@ -54,6 +54,7 @@ public class Node {
     public var ambientColor = Vec4(0.2, 0.2, 0.2, 1)
     public var diffuseColor = Vec4(1, 1, 1, 1)
     public var specularColor = Vec4(0, 0, 0, 1)
+    public var tintColor = Vec4(1, 1, 1, 1)
     public var lightColor = Vec4(1, 1, 1, 1)
     public var zOrder:Int = 0
     public var specularPower:Float = 32
