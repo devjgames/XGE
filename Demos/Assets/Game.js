@@ -49,6 +49,8 @@
 // move(dir) # move 0,1,2,3 none,up,down,left,right for top down games
 // iOS() # running on iOS
 // emitLight(r, g, b, a, radius) # emit light source
+// load() # return the text in _data.txt or null if the file does not exist
+// save(text) # save the given text to _data.txt
 
 if(value() == "spin") {
     rotate(1, 90);
@@ -59,6 +61,19 @@ if(value() == "spin") {
     
     if(down === undefined) {
         down = false;
+    }
+    
+    var key = load();
+    
+    if(key == null) {
+        save("123456");
+    } else {
+        var p;
+        
+        if(p === undefined) {
+            p = 1;
+            print(load());
+        }
     }
     
     if(iOS()) {

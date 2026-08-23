@@ -603,14 +603,20 @@ public class Game {
             _code = nil
             
             do {
+                Log.instance.put("loading Game.js ...")
                 _code = try String(contentsOf: AssetManager.rootURL!.appending(path: "Game.js"), encoding: .utf8)
             } catch {
                 _hasError = true
+                _code = nil
                 
                 Log.instance.put(error.localizedDescription)
             }
             
             _context = JSContext()
+            
+            if _hasError {
+                return
+            }
             
             if let context = _context {
                 context.exceptionHandler = { [weak self] context, error in
@@ -1046,6 +1052,57 @@ public class Game {
                     }
                 }
                 context.setObject(emitLight, forKeyedSubscript: "emitLight" as NSString)
+                
+                let load: @convention(block) () -> String? = {
+                    do {
+                        if GameView.inProduction {
+                            return try String(contentsOf: URL.documentsDirectory.appending(path: "_data").appendingPathExtension("txt"), encoding: .utf8)
+                        } else {
+                            return try String(contentsOf: AssetManager.rootURL!.appending(path: "_data").appendingPathExtension("txt"), encoding: .utf8)
+                        }
+                    } catch {
+                        Log.instance.put(error.localizedDescription)
+                    }
+                    return nil
+                }
+                context.setObject(load, forKeyedSubscript: "load" as NSString)
+                
+                let save: @convention(block) (String) -> Void = { text in
+                    do {
+                        if GameView.inProduction {
+                            try text.write(to: URL.documentsDirectory.appending(path: "_data").appendingPathExtension("txt"), atomically: true, encoding: .utf8)
+                        } else {
+                            try text.write(to: AssetManager.rootURL!.appending(path: "_data").appendingPathExtension("txt"), atomically: true, encoding: .utf8)
+                        }
+                    } catch {
+                        if let context = JSContext.current() {
+                            let error = JSValue(newErrorFromMessage: "failed to load _data.txt", in: context)
+                            
+                            context.exception = error
+                        }
+                        Log.instance.put("ERROR without context - failed to load _data.txt")
+                    }
+                }
+                context.setObject(save, forKeyedSubscript: "save" as NSString)
+                
+                do {
+                    let items = try FileManager.default.contentsOfDirectory(atPath: AssetManager.rootURL!.path)
+                    
+                    for item in items {
+                        if (item as NSString).pathExtension == "js" {
+                            if item.lowercased() != "game.js" {
+                                Log.instance.put("evaluating \(item) ...")
+                                
+                                context.evaluateScript(try String(contentsOf: AssetManager.rootURL!.appending(path: item), encoding: .utf8))
+                            }
+                        }
+                    }
+                } catch {
+                    Log.instance.put(error.localizedDescription)
+                    
+                    _hasError = true
+                    _code = nil
+                }
             }
         }
     }

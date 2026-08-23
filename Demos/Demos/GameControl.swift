@@ -25,6 +25,8 @@ public struct GameControl : NSViewRepresentable {
     public func makeNSView(context: Context) -> some NSView {
         let gameView = GameView(frame: CGRect(x: 0, y: 0, width: 1, height: 1), device: MTLCreateSystemDefaultDevice())
         
+        GameView.inProduction = true
+        
         gameView.delegate = context.coordinator
         
         return gameView
@@ -80,6 +82,8 @@ public struct GameControl : UIViewRepresentable {
     
     public func makeUIView(context: Context) -> some UIView {
         let gameView = GameView(frame: CGRect(x: 0, y: 0, width: 1, height: 1), device: MTLCreateSystemDefaultDevice())
+        
+        GameView.inProduction = true
         
         gameView.delegate = context.coordinator
         

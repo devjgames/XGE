@@ -14,6 +14,7 @@ open class GameView : MTKView {
     
     public static let keyCount:Int = 500
     public static let buttonCount:Int = 2
+    public static var inProduction = false
     
     private static var _instance : GameView?
 #if os(macOS)
