@@ -100,7 +100,6 @@ public class MeshLoader : AssetLoader {
                 let count = part.vertices.count
                 let tris = tokens.count - 3
                 var indices : [Int32] = []
-                var polygon : [Int] = []
                 
                 for i in (1..<tokens.count) {
                     let itokens = tokens[i].components(separatedBy: "/")
@@ -123,7 +122,6 @@ public class MeshLoader : AssetLoader {
                         part.vertices.append(v)
                         
                         indices.append(Int32(count + i - 1))
-                        polygon.append(count + i - 1)
                     } else {
                         throw NSError(domain: "f line invalid, index out of bounds", code: 0)
                     }
@@ -133,7 +131,6 @@ public class MeshLoader : AssetLoader {
                     part.indices.append(indices[i + 2])
                     part.indices.append(indices[i + 1])
                 }
-                part.polygons.append(polygon)
             }
         }
         

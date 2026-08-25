@@ -1115,6 +1115,32 @@ public class Game {
                 }
                 context.setObject(setTintColor, forKeyedSubscript: "setTintColor" as NSString)
                 
+                let triangleCount: @convention(block) () -> Int = { [weak self] in
+                    if let node = self!._current {
+                        return node.triangleCount
+                    }
+                    return 0
+                }
+                context.setObject(triangleCount, forKeyedSubscript: "triangleCount" as NSString)
+                
+                let triangle: @convention(block) (Int, Int, Int) -> Float = { [weak self] triI, pointI, component in
+                    if let node = self!._current {
+                        if let tri = node.triangleAt(i: triI) {
+                            var p = tri[pointI]
+                            
+                            if component == 1 {
+                                return p.x
+                            } else if component == 2 {
+                                return p.y
+                            } else {
+                                return p.z
+                            }
+                        }
+                    }
+                    return 0
+                }
+                context.setObject(triangle, forKeyedSubscript: "triangle" as NSString)
+                
                 do {
                     let items = try FileManager.default.contentsOfDirectory(atPath: AssetManager.rootURL!.path)
                     

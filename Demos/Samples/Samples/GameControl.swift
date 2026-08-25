@@ -27,7 +27,7 @@ public class Sample {
 @MainActor
 let _samples:[Sample] = [
     FXSample(),
-    LightMapSample()
+    MapSample()
 ]
 
 @MainActor

@@ -19,7 +19,6 @@ public class MeshPart {
     public var lightMap:MTLTexture?
     public var vertices:[Vertex] = []
     public var indices:[Int32] = []
-    public var polygons:[[Int]] = []
     public var vertexBuffer:MTLBuffer?
     public var indexBuffer:MTLBuffer?
     public var bounds:AABB = AABB()
@@ -162,6 +161,9 @@ public class Mesh : Encodable {
     
     public var parts:[MeshPart] = []
     public var bounds:AABB = AABB()
+    
+    public init() {
+    }
     
     public var triangleCount: Int {
         get {
