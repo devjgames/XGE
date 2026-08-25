@@ -87,6 +87,8 @@ public class MapSample : Sample {
             TST = \(collider.tested)
             """, 1, 8, 16, 16, 5, 10, 10, Vec4(1, 1, 0.5, 1), Vec4(1, 0.5, 0, 1))
         
+        scene.clearCounts()
+        
         scene.eye = Vec3(64, 64, 64)
         scene.target = Vec3(0, 0, 0)
         scene.up = Vec3(0, 1, 0)

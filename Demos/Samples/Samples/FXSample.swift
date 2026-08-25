@@ -58,6 +58,8 @@ public class FXSample : Sample {
             """, 1, 8, 16, 16, 5, 10, 10, Vec4(1, 1, 0.5, 1), Vec4(1, 0.5, 0, 1))
         
         scene.eye = Vec3(cosf(gameView.totalTime) * 120, 120, sinf(gameView.totalTime) * 120)
+        
+        scene.clearCounts()
     }
     
     public override var name: String {

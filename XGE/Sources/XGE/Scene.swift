@@ -81,19 +81,20 @@ public class Scene {
         target = eye + simd_normalize(Mat4.transformNormal(m, f))
     }
     
+    public func clearCounts() {
+        _trianglesRendered = 0
+        _cullStateBinds = 0
+        _depthStateBinds = 0
+        _renderStateBinds = 0
+        _rendered = 0
+    }
+    
     public func encode() {
         if let sprite = _sprite {
             sprite.buffer()
         }
         if let drawable = GameView.instance!.currentDrawable {
             if let renderPassDescriptor = GameView.instance!.currentRenderPassDescriptor {
-                
-                _trianglesRendered = 0
-                _cullStateBinds = 0
-                _depthStateBinds = 0
-                _renderStateBinds = 0
-                _rendered = 0
-                
                 encode(root: root, renderPassDescriptor: renderPassDescriptor, drawable: drawable)
             }
         }

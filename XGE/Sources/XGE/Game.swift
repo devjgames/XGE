@@ -44,7 +44,7 @@ public class Game {
         get { _topDown }
     }
     
-    public func parseVec2(tokens: [Substring], i:Int) -> Vec2 {
+    private func parseVec2(tokens: [Substring], i:Int) -> Vec2 {
         var v = Vec2(0, 0)
         
         if i + 2 <= tokens.count {
@@ -54,7 +54,7 @@ public class Game {
         return v
     }
     
-    public func parseVec3(tokens: [Substring], i:Int) -> Vec3 {
+    private func parseVec3(tokens: [Substring], i:Int) -> Vec3 {
         var v = Vec3(0, 0, 0)
         
         if i + 3 <= tokens.count {
@@ -80,7 +80,7 @@ public class Game {
         return game
     }
     
-    public func parseColor(tokens: [Substring], i:Int) -> Vec4 {
+    private func parseColor(tokens: [Substring], i:Int) -> Vec4 {
         var color = Vec4(0, 0, 0, 1)
         
         if i + 4 <= tokens.count {
@@ -492,6 +492,8 @@ public class Game {
             }
         }
         
+        gameView.scene.clearCounts()
+        
         if _topDown {
             topDownUdate(gameView: gameView)
         } else {
@@ -528,6 +530,7 @@ public class Game {
                 """, 1, _fontCols, _fontCharW, _fontCharH, 5, 10, 10, textColor1, textColor2
             )
         }
+        gameView.scene.clearCounts()
         update(gameView: gameView, node: gameView.scene.root, inDesign: true)
     }
     
