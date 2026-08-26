@@ -61,7 +61,7 @@ public struct GameControl : NSViewRepresentable {
                         Log.instance.put(error.localizedDescription)
                     }
                 } else {
-                    game.update(gameView: gameView, textScale: 1, textColor1: Vec4(1, 1, 0.5, 1), textColor2: Vec4(1, 0.5, 0, 1))
+                    game.update(gameView: gameView, textScale: 1)
                 }
                 gameView.scene.encode()
                 gameView.tick()
@@ -119,7 +119,7 @@ public struct GameControl : UIViewRepresentable {
                         Log.instance.put(error.localizedDescription)
                     }
                 } else {
-                    game.update(gameView: gameView, textScale: 2, textColor1: Vec4(1, 1, 0.5, 1), textColor2: Vec4(1, 0.5, 0, 1))
+                    game.update(gameView: gameView, textScale: 2)
                 }
                 gameView.scene.encode()
                 gameView.tick()

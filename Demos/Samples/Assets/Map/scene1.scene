@@ -1,0 +1,10 @@
+# name x y z rx ry rz ux uy uz fx fy fz
+map.obj 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+torch.obj 128.0 128.0 -128.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+torch.obj 384.0 192.0 -640.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+torch.obj 320.0 64.0 -320.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+axis.obj 128.0 64.0 -128.0 0.70710677 0.0 -0.70710677 0.0 1.0 0.0 0.70710677 0.0 0.70710677 

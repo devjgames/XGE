@@ -35,6 +35,9 @@ public class Game {
     private var _loadScene:String?
     private var _code:String?
     private var _joined:[String:Node] = [:]
+    private var _textColor1 = Vec4(1, 1, 0.5, 1)
+    private var _textColor2 = Vec4(1, 0.5, 0, 1)
+    private var _textColorLoaded = false
     
     public init() {
         
@@ -80,6 +83,10 @@ public class Game {
         return game
     }
     
+    public func loadTextColor() {
+        _textColorLoaded = false
+    }
+    
     private func parseColor(tokens: [Substring], i:Int) -> Vec4 {
         var color = Vec4(0, 0, 0, 1)
         
@@ -112,6 +119,8 @@ public class Game {
         _current = nil
         _showStats = true
         _loadScene = nil
+        _textColor1 = Vec4(1, 1, 0.5, 1)
+        _textColor2 = Vec4(1, 0.5, 0, 1)
         
         if(name as NSString).pathExtension == "scene" {
             _joined = [:]
@@ -153,6 +162,10 @@ public class Game {
         }
         if let tokens = game["clip"] {
             _clip = parseColor(tokens: tokens, i:1)
+        }
+        if let tokens = game["textColor"] {
+            _textColor1 = parseColor(tokens: tokens, i: 1)
+            _textColor2 = parseColor(tokens: tokens, i: 5)
         }
         
         for line in lines {
@@ -459,12 +472,31 @@ public class Game {
         }
     }
     
-    public func showStart(gameView:GameView, textColor1: Vec4, textColor2: Vec4) {
+    public func showStart(gameView:GameView) {
+        if !_textColorLoaded {
+            _textColorLoaded = true
+            
+            Log.instance.put("setting text color ...")
+            
+            _textColor1 = Vec4(1, 1, 0.5, 1)
+            _textColor2 = Vec4(1, 0.5, 0, 1)
+            
+            do {
+                let game = try loadGame()
+                
+                if let tokens = game["textColor"] {
+                    _textColor1 = parseColor(tokens: tokens, i: 1)
+                    _textColor2 = parseColor(tokens: tokens, i: 5)
+                }
+            } catch {
+                Log.instance.put(error.localizedDescription)
+            }
+        }
         if let sprite = gameView.scene.sprite {
             let w = Int(gameView.drawableSize.width)
             let h = Int(gameView.drawableSize.height)
             
-            sprite.push("click to start", 1, _fontCols, _fontCharW, _fontCharH, 5, w / 2 - 7 * 16, h / 2 - 8 , textColor1, textColor2)
+            sprite.push("click to start", 1, _fontCols, _fontCharW, _fontCharH, 5, w / 2 - 7 * 16, h / 2 - 8 , _textColor1, _textColor2)
         }
     }
     
@@ -474,7 +506,7 @@ public class Game {
         _code = nil
     }
     
-    public func update(gameView:GameView, textScale: Int, textColor1: Vec4, textColor2: Vec4) {
+    public func update(gameView:GameView, textScale: Int) {
         setupJSContext()
         
         _textScale = textScale
@@ -487,7 +519,7 @@ public class Game {
                     RDR = \(gameView.scene.rendered)
                     BND = \(gameView.scene.cullStateBinds):\(gameView.scene.depthStateBinds):\(gameView.scene.renderStateBinds)
                     TST = \(collider.tested)
-                    """, textScale, _fontCols, _fontCharW, _fontCharH, 5, 10, 10, textColor1, textColor2
+                    """, textScale, _fontCols, _fontCharW, _fontCharH, 5, 10, 10, _textColor1, _textColor2
                 )
             }
         }
@@ -517,7 +549,7 @@ public class Game {
         }
     }
     
-    public func updateInDesign(gameView:GameView, textColor1: Vec4, textColor2: Vec4) {
+    public func updateInDesign(gameView:GameView) {
         _textScale = 1
         if let sprite = gameView.scene.sprite {
             sprite.push(
@@ -527,7 +559,7 @@ public class Game {
                 RDR = \(gameView.scene.rendered)
                 BND = \(gameView.scene.cullStateBinds):\(gameView.scene.depthStateBinds):\(gameView.scene.renderStateBinds)
                 TST = \(collider.tested)
-                """, 1, _fontCols, _fontCharW, _fontCharH, 5, 10, 10, textColor1, textColor2
+                """, 1, _fontCols, _fontCharW, _fontCharH, 5, 10, 10, _textColor1, _textColor2
             )
         }
         gameView.scene.clearCounts()

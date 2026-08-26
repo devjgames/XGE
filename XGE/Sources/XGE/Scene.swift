@@ -263,3 +263,51 @@ public class Scene {
         _encodables.removeAll(keepingCapacity: true)
     }
 }
+
+@MainActor
+public func loadScene(name:String) throws -> Void {
+    let lines = try String(contentsOf: AssetManager.rootURL!.appending(path: name), encoding: .utf8).split(whereSeparator: \.isNewline)
+    let scene = GameView.instance!.scene
+    
+    for line in lines {
+        let tLine = line.trimmingCharacters(in: .whitespaces)
+        let tokens = tLine.split(whereSeparator: \.isWhitespace)
+    
+        if !tLine.starts(with: "#") && tokens.count >= 13 {
+            if (tokens[0] as NSString).pathExtension == "obj" || (tokens[0] as NSString).pathExtension == "kfm" {
+                let node = Node()
+                
+                node.encodable = try GameView.instance!.assets.load(path: "\(tokens[0])") as? Encodable
+                
+                node.name = "\(tokens[0])"
+                node.position = Vec3(
+                    (tokens[1] as NSString).floatValue,
+                    (tokens[2] as NSString).floatValue,
+                    (tokens[3] as NSString).floatValue
+                )
+                node.r = Vec3(
+                    (tokens[4] as NSString).floatValue,
+                    (tokens[5] as NSString).floatValue,
+                    (tokens[6] as NSString).floatValue
+                )
+                node.u = Vec3(
+                    (tokens[7] as NSString).floatValue,
+                    (tokens[8] as NSString).floatValue,
+                    (tokens[9] as NSString).floatValue
+                )
+                node.f = Vec3(
+                    (tokens[10] as NSString).floatValue,
+                    (tokens[11] as NSString).floatValue,
+                    (tokens[12] as NSString).floatValue
+                )
+                if tokens.count > 13 {
+                    node.data["value"] = "\(tokens[13])"
+                } else {
+                    node.data["value"] = ""
+                }
+                
+                scene.root.addChild(node)
+            }
+        }
+    }
+}
