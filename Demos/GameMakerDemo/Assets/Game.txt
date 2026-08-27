@@ -26,6 +26,8 @@
 # door.name (radius amount) # radius is the distance from the player to the door when the amount attenuation is applied to open or close the door
 # torch.name (x y z lightRadius lightR lightG lightB lightA flicker scaleX scaleY scaleZ)
 # decal.name (part name)
+# textColor r1 g1 b1 a1 r2 g2 b2 a2
+
 
 topDown true
 speed 100

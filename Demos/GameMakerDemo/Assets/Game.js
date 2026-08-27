@@ -54,6 +54,8 @@
 // setBlendState(state) # 0,1,2 opaque,alpha,add
 // setZOrder(zOrder) # set z order
 // setTintColor(r, g, b, a) # set tint color
+// triangleCount() # return the number of triangles in the current node
+// triangle(triI, pointI, component) # return the given triangle's, given 0,1,2 point's, given 0,1,2 x,y,z component
 
 if(value() == "spin") {
     rotate(1, 90);
@@ -79,34 +81,39 @@ if(value() == "spin") {
         }
     }
     
-    if(iOS()) {
-        var mx = mouseX() - viewWidth() / 2
-        var my = mouseY() - viewHeight() / 2
+    var d = (iOS()) ? 96 : 48
+    var g = (iOS()) ? 16 : 8
+    var w = width();
+    var h = height();
+    var x = w - g - d * 5
+    var y = h - g - d
+    var s = width() / viewWidth();
+    
+    move(0);
+
+    for(var i = 0; i != 5; i++) {
+        var x1 = x;
+        var y1 = y;
+        var x2 = x + d
+        var y2 = y + d
+        var mx = mouseX() * s;
+        var my = h - mouseY() * s;
         
-        if(isButtonDown(0)) {
-            if(Math.abs(my) > Math.abs(mx)) {
-                if(my > 0) {
-                    move(1);
-                } else if(my < 0) {
-                    move(2);
-                }
-            } else {
-                if(mx < 0) {
-                    move(3);
-                } else if(mx > 0) {
-                    move(4);
-                }
+        pushSprite(i * 16, 192, 16, 16, x, y, d, d, 1, 1, 0.5, 1, 1, 0.5, 0, 1);
+        x += d;
+        
+        if(isButtonDown(0) && mx >= x1 && mx < x2 && my >= y1 && my <= y2) {
+            if(i == 0) {
+                move(1);
+            }  else if(i == 1) {
+                move(3);
+            } else if(i == 2) {
+                move(4);
+            } else if(i == 3) {
+                move(2);
+            } else if(i == 4) {
+                // TBD fire
             }
-        }
-    } else {
-        if(isKeyDown(126)) {
-            move(1);
-        } else if(isKeyDown(125)) {
-            move(2);
-        } else if(isKeyDown(123)) {
-            move(3);
-        } else if(isKeyDown(124)) {
-            move(4);
         }
     }
     
