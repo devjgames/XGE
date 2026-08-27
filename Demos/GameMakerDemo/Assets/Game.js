@@ -98,11 +98,10 @@ if(value() == "spin") {
         var y2 = y + d
         var mx = mouseX() * s;
         var my = h - mouseY() * s;
-        
-        pushSprite(i * 16, 192, 16, 16, x, y, d, d, 1, 1, 0.5, 1, 1, 0.5, 0, 1);
-        x += d;
+        var add = 0
         
         if(isButtonDown(0) && mx >= x1 && mx < x2 && my >= y1 && my <= y2) {
+            add = 16
             if(i == 0) {
                 move(1);
             }  else if(i == 1) {
@@ -113,8 +112,13 @@ if(value() == "spin") {
                 move(2);
             } else if(i == 4) {
                 // TBD fire
+            } else {
+                add = 0
             }
         }
+        
+        pushSprite(i * 16, 192 + add, 16, 16, x, y, d, d, 1, 1, 0.5, 1, 1, 0.5, 0, 1);
+        x += d;
     }
     
     if(isKeyDown(49)) {
