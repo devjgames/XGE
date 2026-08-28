@@ -95,12 +95,12 @@ public class Collider {
         if node.bounds.touches(b) {
             if node.collidable {
                 for i in (0..<node.triangleCount) {
-                    let triangle = node.triangleAt(i:i)
-                    
-                    if triangle!.isects(origin: origin, direction: direction, buffer: buffer, time: &time) {
-                        _hitTriangle = triangle
-                        _hitNode = node
-                        _hitTriangleIndex = i
+                    if let triangle = node.triangleAt(i:i) {
+                        if triangle.isects(origin: origin, direction: direction, buffer: buffer, time: &time) {
+                            _hitTriangle = triangle
+                            _hitNode = node
+                            _hitTriangleIndex = i
+                        }
                     }
                 }
             } else if !collidablesOnly {
@@ -194,33 +194,34 @@ public class Collider {
         if(node.bounds.touches(_bounds)) {
             if node.collidable {
                 for i in (0..<node.triangleCount) {
-                    let triangle = node.triangleAt(i: i)!
-                    var t = _time
-                    let origin = _position
-                    let direction = -triangle.normal
-                    
-                    _tested += 1
-                    
-                    if triangle.isectsPlane(origin: origin, direction: direction, time: &t) {
-                        let p = origin + t * direction
+                    if  let triangle = node.triangleAt(i: i) {
+                        var t = _time
+                        let origin = _position
+                        let direction = -triangle.normal
                         
-                        if triangle.contains(point: p, buffer: 0) {
-                            _resolvedNormal = triangle.normal
-                            _resolvedPosition = p + triangle.normal * radius
-                            _time = t
-                            _hitTriangle = triangle
-                            _hitNode = node
-                        } else {
-                            let c = triangle.closestPoint(point: origin)
-                            let d = _position - c
-                            let l = simd_length(d)
+                        _tested += 1
+                        
+                        if triangle.isectsPlane(origin: origin, direction: direction, time: &t) {
+                            let p = origin + t * direction
                             
-                            if l > 0.0000001 && l < _time {
-                                _time = l
-                                _resolvedNormal = simd_normalize(d)
-                                _resolvedPosition = c + _resolvedNormal! * radius
+                            if triangle.contains(point: p, buffer: 0) {
+                                _resolvedNormal = triangle.normal
+                                _resolvedPosition = p + triangle.normal * radius
+                                _time = t
                                 _hitTriangle = triangle
                                 _hitNode = node
+                            } else {
+                                let c = triangle.closestPoint(point: origin)
+                                let d = _position - c
+                                let l = simd_length(d)
+                                
+                                if l > 0.0000001 && l < _time {
+                                    _time = l
+                                    _resolvedNormal = simd_normalize(d)
+                                    _resolvedPosition = c + _resolvedNormal! * radius
+                                    _hitTriangle = triangle
+                                    _hitNode = node
+                                }
                             }
                         }
                     }

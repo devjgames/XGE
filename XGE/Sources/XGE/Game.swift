@@ -329,6 +329,14 @@ public class Game {
                 node.receivesLight = (tokens[1] == "true") ? true : false
             }
         }
+        if let tokens = game["emitLight.\(name)"] {
+            if tokens.count ==  7 {
+                node.emitsLight = true
+                node.lightColor = parseColor(tokens: tokens, i: 1)
+                node.lightRadius = (tokens[5] as NSString).floatValue
+                node.scale = Vec3(1, 1, 1) * (tokens[6] as NSString).floatValue
+            }
+        }
         if let tokens = game["visible.*"] {
             if tokens.count == 2 {
                 node.visible = (tokens[1] == "true") ? true : false
@@ -1160,16 +1168,25 @@ public class Game {
                 
                 let triangle: @convention(block) (Int, Int, Int) -> Float = { [weak self] triI, pointI, component in
                     if let node = self!._current {
-                        if let tri = node.triangleAt(i: triI) {
-                            var p = tri[pointI]
-                            
-                            if component == 1 {
-                                return p.x
-                            } else if component == 2 {
-                                return p.y
-                            } else {
-                                return p.z
+                        if triI >= 0 && triI < node.triangleCount {
+                            if let tri = node.triangleAt(i: triI) {
+                                var p = tri[pointI]
+                                
+                                if component == 1 {
+                                    return p.y
+                                } else if component == 2 {
+                                    return p.z
+                                } else {
+                                    return p.x
+                                }
                             }
+                        } else if let context = JSContext.current() {
+                            if let context = JSContext.current() {
+                                let error = JSValue(newErrorFromMessage: "triangle index out of bounds", in: context)
+                                
+                                context.exception = error
+                            }
+                            Log.instance.put("ERROR without context - triangle index out of bounds")
                         }
                     }
                     return 0

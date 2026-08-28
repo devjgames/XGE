@@ -172,7 +172,11 @@ public class Node {
                             _triangles!.append(triangle)
                         }
                     }
-                    return _triangles![i]
+                    if let triangles = _triangles {
+                        if i >= 0 && i < triangles.count {
+                            return triangles[i]
+                        }
+                    }
                 }
             }
         }
