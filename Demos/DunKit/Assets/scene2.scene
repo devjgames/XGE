@@ -1,0 +1,84 @@
+# name x y z rx ry rz ux uy uz fx fy fz
+Axis 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Player 0.0 32.0 0.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+flats.obj 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+door-way.obj -0.0 0.0 -64.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj -64.0 0.0 -64.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj -64.0 0.0 -0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj -64.0 0.0 64.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj -0.0 0.0 64.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj 64.0 0.0 64.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj 64.0 0.0 0.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj 64.0 0.0 -64.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+hall-short.obj 0.0 0.0 -128.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+hall-corner.obj -0.0 0.0 -192.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+hall-short.obj 64.0 0.0 -192.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+hall-corner.obj 128.0 0.0 -192.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+hall-ramp.obj 128.0 0.0 -256.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+hall-short.obj 128.0 -16.0 -320.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+door-way.obj 128.0 -16.0 -384.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj 64.0 -16.0 -384.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj 192.0 -16.0 -384.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj 192.0 -16.0 -448.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj 192.0 -16.0 -512.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj 128.0 -16.0 -512.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+corner.obj 64.0 -16.0 -512.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+side.obj 64.0 -16.0 -448.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+flats.obj 128.0 -16.0 -448.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 128.0 -16.0 -512.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+coins.obj 64.0 -16.0 -512.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 64.0 -16.0 -384.0 -0.99999994 0.0 -1.26880515e-08 0.0 1.0 0.0 -1.26880515e-08 0.0 -0.99999994 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 192.0 -16.0 -384.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Orb 128.0 48.0 -448.0 0.70710677 0.0 -0.70710677 0.49999997 0.70710677 0.49999997 0.49999997 -0.7071067 0.49999997 
+# name x y z rx ry rz ux uy uz fx fy fz
+Door 128.0 -16.0 -320.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Portal 129.0 64.0 -543.0 1.0 0.0 0.0 0.0 -1.26880515e-08 0.99999994 0.0 -0.99999994 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+coins.obj 128.0 0.0 -192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 128.0 0.0 -192.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch -0.0 0.0 -192.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Door -0.0 0.0 -128.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch -64.0 0.0 -64.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 64.0 0.0 -64.0 1.26880515e-08 0.0 0.99999994 0.0 1.0 0.0 -0.99999994 0.0 -1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch -64.0 0.0 64.0 -1.26880515e-08 0.0 -0.99999994 0.0 1.0 0.0 0.99999994 0.0 1.26880515e-08 
+# name x y z rx ry rz ux uy uz fx fy fz
+coins.obj 64.0 0.0 64.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Portal -1.0 96.0 95.0 1.0 0.0 0.0 0.0 1.26880515e-08 -0.99999994 0.0 0.99999994 -1.26880515e-08 

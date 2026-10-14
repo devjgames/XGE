@@ -1,0 +1,10 @@
+# name x y z rx ry rz ux uy uz fx fy fz
+Map 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 128.0 128.0 -128.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 320.0 64.0 -320.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Torch 384.0 192.0 -640.0 1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 
+# name x y z rx ry rz ux uy uz fx fy fz
+Player 128.0 64.0 -128.0 0.70710677 0.0 -0.70710677 0.0 1.0 0.0 0.70710677 0.0 0.70710677 
